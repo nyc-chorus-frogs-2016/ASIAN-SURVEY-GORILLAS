@@ -1,0 +1,45 @@
+body {
+  font-family: serif, Times, "Times New Roman"
+  margin: 0 auto;
+  font-weight: normal;
+/*  background-image: url("../imgs/background.jpg");
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-attachment: fixed;*/
+}
+
+
+div {
+    background-color: #66FF99;
+    width: 300px;
+    padding: 15px;
+    border: 3px solid #0066FF;
+    margin: 25px;
+}
+
+
+#home {
+  margin-left: 10%;
+  text-align: left;
+
+}
+
+#home h1 {
+  color: #003300;
+  font-size: 2em;
+  font-weight: 700;
+  margin-top: 0;
+  padding-top: 40px;
+}
+
+a:link {
+  font-size: 1.25em;
+  padding: 15px 20px;
+  text-align: left;
+
+}
+
+
+.details {
+  display: none;
+}

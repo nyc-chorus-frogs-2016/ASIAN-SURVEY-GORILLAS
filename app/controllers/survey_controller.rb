@@ -21,8 +21,12 @@ end
 #show a survey
 get '/surveys/:id'  do
   @survey = Survey.find_by(id: params[:id])
+  # if request.xhr?
+  #    erb :'_survey', layout: false, locals: {survey: @survey }
+  # else
   erb :'surveys/show'
 end
+# end
 
 #edit
 get '/surveys/:id/edit' do

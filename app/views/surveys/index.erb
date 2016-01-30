@@ -1,18 +1,30 @@
+<section id="home">
+  <% if logged_in? %>
+    <h1>Hello <%= current_user.username.capitalize %></h1>
+      <div>
+        <a href="/surveys/new">Create a survey</a>
+      </div>
+  <% else %>
+      <h1>Hello Gorillas</h1>
+  <% end %>
 
-<% if logged_in? %>
-<h1>Hello <%= current_user.username.capitalize %></h1>
-<div>
-<a href="/surveys/new">Create a survey</a>
-</div>
 
-<% else %>
-<h1>Hello Gorillas</h1>
-<% end %>
+     <div id='survey-list'>
+   <ul>
+   <% @surveys.each do |survey| %>
+<li id='survey-<%=survey.id%>'>
+        <a data-id='<%=survey.id %>' href="/surveys/<%=survey.id%>"><%= survey.title %></a>
 
-<% @surveys.each do |survey| %>
-<div>
-<a id="surveys" href="/surveys/<%=survey.id%>"><%= survey.title %></a>
-</div>
-<% end %>
+  <div class="details">
+    <div>
+      <label>Description:</label>
+      <label> <%=survey.description%> </label>
+    </div>
+  </div>
+      </li>
+   <% end %>
+     </div>
+</section>
+
 
 

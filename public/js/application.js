@@ -19,8 +19,6 @@ $(document).ready(function() {
 
    $("#created-question").on('submit', 'form', function(event){
     event.preventDefault();
-    console.log($(event.target))
-      // debugger
 
     var requestOption = {
       url: $(event.target).attr("action"),
@@ -30,23 +28,41 @@ $(document).ready(function() {
     };
 
     $.ajax(requestOption).done(function(response){
-      console.log('helllooowwww')
-      $('#created-choice').append(response)
-    }).fail(function(response){
-      console.log('you failed!!!!')
-    });
-   });
 
-   $('#surveys').on('click', function(event){
-    event.preventDefault();
-    var url=$(event.target).attr('href')
-    $.ajax(url).done(function(response){
-      console.log('yayyyy')
-      $(event.target).append(response)
+      $('#created-choice').append(response)
     }).fail(function(response){
       console.log(response)
     });
    });
+
+
+   $("#created-choice").on('submit', 'form', function(event){
+       event.preventDefault();
+       var choiceoption = {
+      url: $(event.target).attr("action"),
+      method: $(event.target).attr("method"),
+      data: $(event.target).serialize(),
+      dataType: "html"
+    };
+      // debugger
+
+   });
+
+
+
+
+
+
+   $('#survey-list a').on('click', function(event){
+    event.preventDefault();
+  $(event.target).siblings('.details').toggle();
+    // console.log($(event.target));
+  });
+
+
+
+
+
 
 });
 
