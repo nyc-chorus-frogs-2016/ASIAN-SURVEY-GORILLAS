@@ -37,6 +37,17 @@ $(document).ready(function() {
     });
    });
 
+   $('#surveys').on('click', function(event){
+    event.preventDefault();
+    var url=$(event.target).attr('href')
+    $.ajax(url).done(function(response){
+      console.log('yayyyy')
+      $(event.target).append(response)
+    }).fail(function(response){
+      console.log(response)
+    });
+   });
+
 });
 
 
