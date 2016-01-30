@@ -1,0 +1,19 @@
+<H1>Edit your survey here:</H1>
+  <form action='/surveys/<%=@survey.id%>/edit' method='post'>
+     <input type='hidden' name='_method' value='put'>
+    <ul>
+      <li>
+        <label for='survey[title]'>title:</label>
+        <input type='text' name='survey[title]' value='<%=@survey.title%>' />
+      </li>
+      <li>
+        <label for='survey[description]'>description:</label>
+        <input type='text' name='survey[description]' value='<%=@survey.description %>' />
+      </li>
+    </ul>
+    <input type='submit' value='update survey'>
+  </form>
+
+<% if @errors %>
+  <%=@errors%>
+<% end %>

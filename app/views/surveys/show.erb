@@ -1,0 +1,43 @@
+<h1><%=@survey.title%></h1>
+<h1><%=@survey.description%></h1>
+
+<% @survey.questions.each do |question|%>
+  <h3><%= question.content %></h3>
+  <% if current_user.id == @survey.creator_id %>
+  <a href='/questions/<%=question.id %>/edit'>edit question</a>
+  <a href='/questions/<%=question.id%>/choices/new'>add choices</a>
+  <div>
+    <form action='/questions/<%= question.id %>' method='post'>
+      <input type='hidden' name='_method' value='delete' />
+      <input type='submit' value='delete' />
+    </form>
+  </div>
+  <%end%>
+  <% question.choices.each do |choice|%>
+    <h4><%= choice.content %></h4>
+
+   <% if current_user.id == @survey.creator_id %>
+    <a href='/choices/<%=choice.id %>/edit'>edit choice</a>
+        <div>
+      <form action='/choices/<%= choice.id %>' method='post'>
+        <input type='hidden' name='_method' value='delete' />
+        <input type='submit' value='delete' />
+      </form>
+    </div>
+    <% end %>
+  <% end %>
+
+  <hr>
+<% end %>
+
+<% if current_user.id == @survey.creator_id %>
+<a href='/surveys/<%=@survey.id%>/questions/new'>add questions</a>
+    <div>
+      <form action='/surveys/<%= @survey.id %>' method='post'>
+        <input type='hidden' name='_method' value='delete' />
+        <input type='submit' value='delete' />
+      </form>
+    </div>
+
+<a href='/surveys/<%=@survey.id %>/edit'>edit survey</a>
+<% end %>

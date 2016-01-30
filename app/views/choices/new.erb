@@ -1,0 +1,15 @@
+<H1>Create a choice for the question:</H1>
+  <form action='/questions/<%=@question.id%>/choices' method='post'>
+    <ul>
+      <li>
+        <label for='choice[content]'>content:</label>
+        <input type='text' name='choice[content]' placeholder='content' />
+        <input type='hidden' name='choice[question_id]' value='<%=@question.id %>' />
+      </li>
+    </ul>
+    <input type='submit' value='create choice'>
+  </form>
+
+<% if @errors %>
+  <%=@errors%>
+<% end %>

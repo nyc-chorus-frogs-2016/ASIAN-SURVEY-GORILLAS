@@ -1,0 +1,15 @@
+<H1>Edit your survey questions here:</H1>
+  <form action='/questions/<%=@question.id%>/edit' method='post'>
+     <input type='hidden' name='_method' value='put'>
+    <ul>
+      <li>
+        <label for='question[content]'>content:</label>
+        <input type='text' name='question[content]' value='<%=@question.content%>' />
+      </li>
+    </ul>
+    <input type='submit' value='update question'>
+  </form>
+
+<% if @errors %>
+  <%=@errors%>
+<% end %>

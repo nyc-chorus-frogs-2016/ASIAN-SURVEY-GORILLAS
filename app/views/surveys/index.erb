@@ -1,0 +1,18 @@
+
+<% if logged_in? %>
+<h1>Hello <%= current_user.username.capitalize %></h1>
+<div>
+<a href="/surveys/new">Create a survey</a>
+</div>
+
+<% else %>
+<h1>Hello Gorillas</h1>
+<% end %>
+
+<% @surveys.each do |survey| %>
+<div>
+<a href="/surveys/<%=survey.id%>"><%= survey.title %></a>
+</div>
+<% end %>
+
+

@@ -1,0 +1,15 @@
+H1>Edit the Choice for This Question:</H1>
+  <form action='/choices/<%=@choice.id%>/edit' method='post'>
+  <input type='hidden' name='_method' value='put'>
+    <ul>
+      <li>
+        <label for='choice[content]'>content:</label>
+        <input type='text' name='choice[content]' value='<%=@choice.content%>' />
+      </li>
+    </ul>
+    <input type='submit' value='edit choice'>
+  </form>
+
+<% if @errors %>
+  <%=@errors%>
+<% end %>

@@ -1,0 +1,37 @@
+<div id='login_or_reg'>
+<H1>Login Here:</H1>
+  <form action='/sessions' method='post' >
+    <ul>
+      <li>
+        <label for='user[username]'>username:</label>
+        <input type='text' name='user[username]' placeholder='username' />
+      </li>
+      <li>
+        <label for='user[password]'>password:</label>
+        <input type='password' name='user[password]' placeholder='password' />
+      </li>
+    </ul>
+    <input type='submit' value='login'>
+  </form>
+  <hr>
+<H1>Register Here:</H1>
+  <form action='/users' method='post'>
+    <ul>
+      <li>
+        <label for='user[username]'>username:</label>
+        <input type='text' name='user[username]' placeholder='username' />
+      </li>
+      <li>
+        <label for='user[password]'>password:</label>
+        <input type='password' name='user[password]' placeholder='password' />
+      </li>
+    </ul>
+    <input type='submit' value='create account'>
+  </form>
+</div>
+
+<div class='error_message'>
+<% if @error %>
+<%= @error %>
+<% end %>
+</div>
