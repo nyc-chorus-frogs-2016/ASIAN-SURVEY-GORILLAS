@@ -1,6 +1,10 @@
 get '/questions/:id/choices/new' do
  @question = Question.find_by(id: params[:id])
- erb :"choices/new"
+ if request.xhr?
+  erb :"_choices_form", layout: false, locals: {question: @question}
+ else
+  erb :"choices/new"
+ end
 end
 
 post '/questions/:id/choices' do
@@ -8,8 +12,11 @@ post '/questions/:id/choices' do
   choice = Choice.new(params[:choice])
   if choice.save
     @question.choices << choice
-    redirect "surveys/#{find_survey_id(@question)}/questions/new"
-
+    if request.xhr?
+      erb :"_choices_description", layout: false, locals: {choice: choice}
+    else
+      redirect "surveys/#{find_survey_id(@question)}/questions/new"
+    end
   else
     @errors = "Please fill out all fields"
     erb :'choices/new'

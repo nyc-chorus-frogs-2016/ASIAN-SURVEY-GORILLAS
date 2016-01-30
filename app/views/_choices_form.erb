@@ -1,14 +1,8 @@
-<!--
-<form id='choice_form' action='/questions/<%=question.id%>/choices' method='post'>
-    <ul>
-      <li>
-        <label for='choice[content]'>content:</label>
+<form id='choice-form' question_id='<%=question.id%>' action='/questions/<%=question.id%>/choices' method='post'>
+        content:
         <input type='text' name='choice[content]' placeholder='content' />
         <input type='hidden' name='choice[question_id]' value='<%=question.id %>' />
-      </li>
-    </ul>
     <input type='submit' value='create choice'>
   </form>
 
- -->
- <h1>hello</h1>
+
