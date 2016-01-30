@@ -1,7 +1,11 @@
 #create a question
 get '/surveys/:id/questions/new'  do
   @survey = Survey.find_by(id: params[:id])
-  erb :'questions/new'
+  if request.xhr?
+    erb :"_question_form", layout: false, locals: {survey: @survey}
+  else
+    erb :'questions/new'
+  end
 end
 
 post '/surveys/:id/questions' do
@@ -11,12 +15,10 @@ post '/surveys/:id/questions' do
   if question.save
     @survey.questions << question
     if request.xhr?
-      erb :'_choices_form', layout: false, locals: {question: question}
-
+      erb :'_question_description', layout: false, locals: {question: question}
     else
     redirect "/questions/#{question.id}/choices/new"
-  end
-
+    end
   else
     @errors = "Please fill out all fields"
     erb :'questions/new'

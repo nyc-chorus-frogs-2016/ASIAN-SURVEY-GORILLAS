@@ -1,6 +1,6 @@
-<div id="created-survey-title">
+<div id="survey-div">
 <H1>Create a survey:</H1>
-  <form id="create-survey" action='/surveys' method='post'>
+  <form id="survey-form" action='/surveys' method='post'>
     <ul>
       <li>
         <label for='survey[title]'>title:</label>
@@ -9,20 +9,16 @@
       <li>
         <label for='survey[description]'>description:</label>
         <input type='text' name='survey[description]' placeholder='desription' />
-        <input type='hidden' name='survey[creator_id]' value='<%= current_user.id%>' />
-        <input type='hidden' name='survey[is_active]' value=<%= false %> />
       </li>
     </ul>
+    <input type='hidden' name='survey[creator_id]' value='<%= current_user.id%>' />
+    <input type='hidden' name='survey[is_active]' value=<%= false %> />
     <input type='submit' value='create survey'>
   </form>
 </div>
 
-<div id="created-question">
+<div id="question-div">
 </div>
 
-<div id="created-choice">
+<div id="questions">
 </div>
-
-<% if @errors %>
-  <%=@errors%>
-<% end %>

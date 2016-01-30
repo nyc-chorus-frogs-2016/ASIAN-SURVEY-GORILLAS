@@ -37,7 +37,7 @@
                 <type label="SET" length="1" sql="SET" quote=""/>
                 <type label="Bit" length="0" sql="bit" quote=""/>
         </group>
-</datatypes><table x="13" y="101" name="users">
+</datatypes><table x="112" y="108" name="users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -51,7 +51,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="370" y="100" name="surveys">
+<table x="662" y="107" name="surveys">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -69,22 +69,18 @@
 <part>id</part>
 </key>
 </table>
-<table x="810" y="107" name="questions">
+<table x="1067" y="139" name="questions">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="content" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
-<row name="survey_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="surveys" row="id" />
-</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="1067" y="101" name="choices">
+<table x="1474" y="108" name="choices">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -99,7 +95,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="178" y="372" name="user_surveys">
+<table x="956" y="726" name="responses">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -107,15 +103,15 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
 </row>
-<row name="survey_id" null="1" autoincrement="0">
+<row name="choice_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="surveys" row="id" />
+<default>NULL</default><relation table="choices" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="558" y="382" name="question_surveys">
+<table x="858" y="392" name="question_surveys">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>

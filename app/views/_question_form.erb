@@ -1,9 +1,5 @@
-  <form id='question_form' action='/surveys/<%=survey.id%>/questions' method='post'>
-    <ul>
-      <li>
-        <label for='question[content]'>content:</label>
-        <input type='text' name='question[content]' placeholder='content' />
-      </li>
-    </ul>
+  <form id='question-form' action='/surveys/<%=survey.id%>/questions' method='post'>
+    <label for='question[content]'>question:</label>
+    <input type='text' name='question[content]' placeholder='content' />
     <input type='submit' value='create question'>
   </form>

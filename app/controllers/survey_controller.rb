@@ -8,7 +8,7 @@ post '/surveys'  do
 
   if new_survey.save
     if request.xhr?
-      erb :'_question_form', layout: false, locals: {survey: new_survey}
+      erb :'_survey_description', layout: false, locals: {survey: new_survey}
     else
       redirect "/surveys/#{new_survey.id}/questions/new"
     end
