@@ -1,5 +1,8 @@
 <h1><%=@survey.title%></h1>
 <h1><%=@survey.description%></h1>
+  <% if @error %>
+<%= @error %>
+<% end %>
 
 <% @survey.questions.each do |question|%>
   <h3><%= question.content %></h3>
@@ -13,8 +16,18 @@
     </form>
   </div>
   <%end%>
+
   <% question.choices.each do |choice|%>
-    <h4><%= choice.content %></h4>
+   <%= choice.content %>
+     <%= choice.answers.count %>
+    <div id='answer-form'>
+    <form action='/answers' method='post'>
+      <input type='hidden' name='answer[taker_id]' value="<%=current_user.id%>"/>
+    <input type='hidden' name='answer[choice_id]' value="<%=choice.id%>" />
+   <input type='hidden' name='answer[survey_id]' value="<%=@survey.id%>" />
+      <input type='submit' value='vote' />
+    </form>
+  </div>
 
    <% if current_user.id == @survey.creator_id %>
     <a href='/choices/<%=choice.id %>/edit'>edit choice</a>
@@ -41,3 +54,5 @@
 
 <a href='/surveys/<%=@survey.id %>/edit'>edit survey</a>
 <% end %>
+
+<a href="/">Back </a>

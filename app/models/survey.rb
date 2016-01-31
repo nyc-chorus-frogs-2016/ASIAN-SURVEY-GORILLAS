@@ -3,4 +3,5 @@ class Survey < ActiveRecord::Base
  belongs_to :creator, class_name: :User
  has_many :question_surveys, dependent: :destroy
  has_many :questions,through: :question_surveys
+ has_many :answers
 end

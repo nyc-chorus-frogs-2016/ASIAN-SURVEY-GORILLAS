@@ -1,0 +1,27 @@
+<h1>Hi <%=current_user.username%></h1>
+
+
+<% @surveys.each do |survey|%>
+ <h2>Survey title: <%= survey.title%> </h2>
+    <form action='/surveys/<%= survey.id %>' method='post'>
+        <input type='hidden' name='_method' value='delete' />
+        <input type='submit' value='delete' />
+      </form>
+ <div> <hr>
+ <% survey.questions.each do |question|%>
+ <h3>question: <%= question.content %> </h3>
+
+ <h2> Top Choices: <%= most_chosen(question) %> </h2>
+<%  question.choices.each do |choice|%>
+ <h5> Choice: <%= choice.content%> </h5>
+ <%= choice.answers.count%>
+
+ <% end%>
+ <% end%>
+</div>
+ <% end %>
+
+
+
+
+
