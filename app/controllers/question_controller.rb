@@ -11,7 +11,8 @@ end
 post '/surveys/:id/questions' do
 
   @survey = Survey.find_by(id: params[:id])
-  question = Question.new(params[:question])
+  # question = Question.new(params[:question])
+  question = Question.find_or_create_by(content: params[:question][:content])
   if question.save
     @survey.questions << question
     if request.xhr?
@@ -24,6 +25,13 @@ post '/surveys/:id/questions' do
     erb :'questions/new'
   end
 end
+
+
+get '/questions/show' do
+@questions = Question.all
+erb :'questions/show'
+end
+
 
 #edit
 get '/questions/:id/edit' do

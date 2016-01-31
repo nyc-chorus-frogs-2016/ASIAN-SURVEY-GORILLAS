@@ -18,6 +18,13 @@ post '/surveys'  do
   end
 end
 
+
+get '/users/:id/results' do
+@user = User.find_by(id: params[:id])
+@surveys = @user.surveys
+erb :'surveys/result'
+end
+
 #show a survey
 get '/surveys/:id'  do
   @survey = Survey.find_by(id: params[:id])

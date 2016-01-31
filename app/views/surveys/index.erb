@@ -4,15 +4,24 @@
 <div>
 <a href="/surveys/new">Create a survey</a>
 </div>
-
+<a href='/users/<%=current_user.id%>/results'>results</a>
 <% else %>
 <h1>Hello Gorillas</h1>
 <% end %>
-
+<h3>Take a survey Here!</h3>
+<hr>
 <% @surveys.each do |survey| %>
 <div>
 <a href="/surveys/<%=survey.id%>"><%= survey.title %></a>
+<% if logged_in? && current_user.id == survey.creator_id %>
+ <form action='/surveys/<%= survey.id %>' method='post'>
+        <input type='hidden' name='_method' value='delete' />
+        <input type='submit' value='delete' />
+      </form>
+<% end %>
 </div>
 <% end %>
+
+
 
 
