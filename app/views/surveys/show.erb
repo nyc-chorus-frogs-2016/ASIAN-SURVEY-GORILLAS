@@ -1,12 +1,17 @@
 <h1><%=@survey.title%></h1>
 <h1><%=@survey.description%></h1>
+<div class='errormsg'>
   <% if @error %>
 <%= @error %>
 <% end %>
+</div>
 
+<% if !logged_in? %>
+<h2 class='loggedout'>Please log in to vote!</h2>
+<% end %>
 <% @survey.questions.each do |question|%>
   <h3><%= question.content %></h3>
-  <% if current_user.id == @survey.creator_id %>
+  <% if logged_in? && current_user.id == @survey.creator_id %>
   <a href='/questions/<%=question.id %>/edit'>edit question</a>
   <a href='/questions/<%=question.id%>/choices/new'>add choices</a>
   <div>
@@ -20,16 +25,19 @@
   <% question.choices.each do |choice|%>
    <%= choice.content %>
      <%= choice.answers.count %>
+     <% if logged_in? %>
     <div id='answer-form'>
     <form action='/answers' method='post'>
       <input type='hidden' name='answer[taker_id]' value="<%=current_user.id%>"/>
     <input type='hidden' name='answer[choice_id]' value="<%=choice.id%>" />
+    <input type='hidden' name='answer[question_id]' value="<%=choice.question_id%>" />
    <input type='hidden' name='answer[survey_id]' value="<%=@survey.id%>" />
       <input type='submit' value='vote' />
     </form>
+    <% end%>
   </div>
 
-   <% if current_user.id == @survey.creator_id %>
+   <% if logged_in? && current_user.id == @survey.creator_id %>
     <a href='/choices/<%=choice.id %>/edit'>edit choice</a>
         <div>
       <form action='/choices/<%= choice.id %>' method='post'>
@@ -43,7 +51,7 @@
   <hr>
 <% end %>
 
-<% if current_user.id == @survey.creator_id %>
+<% if logged_in? &&  current_user.id == @survey.creator_id %>
 <a href='/surveys/<%=@survey.id%>/questions/new'>add questions</a>
     <div>
       <form action='/surveys/<%= @survey.id %>' method='post'>

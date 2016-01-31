@@ -12,7 +12,7 @@ post '/surveys/:id/questions' do
 
   @survey = Survey.find_by(id: params[:id])
   # question = Question.new(params[:question])
-  question = Question.find_or_create_by(content: params[:question][:content])
+  question = Question.new(params[:question])
   if question.save
     @survey.questions << question
     if request.xhr?

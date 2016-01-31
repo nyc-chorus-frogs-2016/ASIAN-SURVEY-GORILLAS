@@ -5,6 +5,6 @@ class Answer < ActiveRecord::Base
   belongs_to :taker, class_name: :User
   has_one :question, :through => :choice
 
-  validates_uniqueness_of :taker_id, :scope => :choice
+  validates_uniqueness_of :taker_id, :scope => :question
 end
 

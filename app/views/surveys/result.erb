@@ -9,9 +9,9 @@
       </form>
  <div> <hr>
  <% survey.questions.each do |question|%>
- <h3>question: <%= question.content %> </h3>
+ <h2>question: <%= question.content %> </h2>
 
- <h2> Top Choices: <%= most_chosen(question) %> </h2>
+ <h4> Top Choices: <%= most_chosen(question) %> </h4>
 <%  question.choices.each do |choice|%>
  <h5> Choice: <%= choice.content%> </h5>
  <%= choice.answers.count%>
