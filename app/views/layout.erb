@@ -22,11 +22,12 @@
   <a href='/'>Home</a>
   <% if logged_in? %>
   <a href='/logout'>logout</a>
+
   <% else %>
   <a href='/login'>login</a>
   <% end %>
+<%= yield %>
 
-  <%= yield %>
 </body>
 </html>
 </div>

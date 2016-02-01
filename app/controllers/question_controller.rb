@@ -8,10 +8,6 @@ get '/surveys/:id/questions/new'  do
   end
 end
 
-get '/surveys/:id'  do
-  @survey = Survey.find_by(id: params[:id])
-  erb :'surveys/show'
-end
 
 
 post '/surveys/:id/questions' do
