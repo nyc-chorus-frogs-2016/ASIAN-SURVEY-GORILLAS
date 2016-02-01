@@ -1,6 +1,24 @@
+get '/' do
+  @surveys = Survey.all
+  erb :'surveys/index'
+end
+
 #create a new survey
 get '/surveys/new'  do
   erb :'surveys/new'
+end
+
+
+#show a survey
+get '/surveys/:id'  do
+  @survey = Survey.find_by(id: params[:id])
+  erb :'surveys/show'
+end
+
+get '/users/:id/results' do
+@user = User.find_by(id: params[:id])
+@surveys = @user.surveys
+erb :'surveys/result'
 end
 
 post '/surveys'  do
@@ -19,17 +37,7 @@ post '/surveys'  do
 end
 
 
-get '/users/:id/results' do
-@user = User.find_by(id: params[:id])
-@surveys = @user.surveys
-erb :'surveys/result'
-end
 
-#show a survey
-get '/surveys/:id'  do
-  @survey = Survey.find_by(id: params[:id])
-  erb :'surveys/show'
-end
 
 #edit
 get '/surveys/:id/edit' do
@@ -44,6 +52,11 @@ put '/surveys/:id/edit' do
   redirect "/surveys/#{survey.id}"
 end
 
+put '/surveys/:id/active' do
+  survey = Survey.find_by(id: params[:id])
+  survey.update_attributes(params[:survey])
+  redirect "/surveys/#{survey.id}"
+end
 
 #delete
 delete '/surveys/:id' do

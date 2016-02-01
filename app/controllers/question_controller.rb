@@ -8,8 +8,9 @@ get '/surveys/:id/questions/new'  do
   end
 end
 
-post '/surveys/:id/questions' do
 
+
+post '/surveys/:id/questions' do
   @survey = Survey.find_by(id: params[:id])
   # question = Question.new(params[:question])
   question = Question.new(params[:question])
@@ -18,7 +19,7 @@ post '/surveys/:id/questions' do
     if request.xhr?
       erb :'_question_description', layout: false, locals: {question: question}
     else
-    redirect "/questions/#{question.id}/choices/new"
+    redirect "/surveys/#{@survey.id}"
     end
   else
     @errors = "Please fill out all fields"

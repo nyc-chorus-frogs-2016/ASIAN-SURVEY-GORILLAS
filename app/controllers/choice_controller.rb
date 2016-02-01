@@ -15,7 +15,7 @@ post '/questions/:id/choices' do
     if request.xhr?
       erb :"_choices_description", layout: false, locals: {choice: choice}
     else
-      redirect "surveys/#{find_survey_id(@question)}/questions/new"
+      redirect "surveys/#{find_survey_id(@question)}"
     end
   else
     @errors = "Please fill out all fields"
@@ -44,3 +44,14 @@ delete '/choices/:id' do
   choice.destroy
   redirect "/surveys/#{find_survey_id(choice.question)}"
 end
+
+delete '/choices/:id/delete' do
+  choice = Choice.find_by(id: params[:id])
+  userID = User.find_by(id: params[:user][:taker_id])
+answer = Answer.find_by(taker_id: userID, choice_id: choice.id)
+answer.destroy
+redirect "surveys/#{find_survey_id(choice.question)}"
+end
+
+
+
