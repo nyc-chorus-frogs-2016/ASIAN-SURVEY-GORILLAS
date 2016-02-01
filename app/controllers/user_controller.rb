@@ -1,5 +1,6 @@
 get '/users/:id' do
   @user = User.find_by(id: params[:id])
+  @surveys = Survey.all
   erb :'/users/index'
 end
 

@@ -2,17 +2,23 @@
 <% if logged_in? %>
 <h1>Hello <%= current_user.username.capitalize %></h1>
 <div>
-<a href="/surveys/new">Create a survey</a>
+<a href='/surveys/new'>Create a survey</a>
+</div>
+<div>
+<a href="/users/<%=current_user.id%>"> <%=current_user.username%> </a>
 </div>
 <a href='/users/<%=current_user.id%>/results'>results</a>
 <% else %>
 <h1>Hello Gorillas</h1>
 <% end %>
-<h3>Take a survey Here!</h3>
 <hr>
+<div id='surveylist'>
+<h3>Take a survey Here:</h3>
 <% @surveys.each do |survey| %>
 <div>
+  <% if survey.is_active %>
 <a href="/surveys/<%=survey.id%>"><%= survey.title %></a>
+<% end %>
 <% if logged_in? && current_user.id == survey.creator_id %>
  <form action='/surveys/<%= survey.id %>' method='post'>
         <input type='hidden' name='_method' value='delete' />
@@ -21,7 +27,7 @@
 <% end %>
 </div>
 <% end %>
-
+</div>
 
 
 

@@ -28,6 +28,27 @@ end
 # lists.each { |k, v| puts k.content if v == lists.values.max }
   end
 
-# def find_creator(choice)
-#   choice.question.survey_id.creator_id
-# end
+def answered_all?(user, survey)
+  answers = []
+  Answer.find_each do |answer|
+  if answer.taker_id == user.id && answer.survey_id == survey.id
+answers << answer
+end
+end
+# binding.pry
+if answers != nil
+
+# binding.pry
+return true if answers.count == survey.questions.count
+end
+end
+
+
+def votedchoice(user, choice)
+answer = Answer.find_by(taker_id: user.id, choice_id: choice.id)
+if answer != nil
+  return true
+else
+  false
+end
+end

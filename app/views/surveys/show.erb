@@ -1,5 +1,5 @@
-<h1><%=@survey.title%></h1>
-<h1><%=@survey.description%></h1>
+<h3>Title:<%=@survey.title%></h3>
+<h5>Description: <%=@survey.description%></h5>
 <div class='errormsg'>
   <% if @error %>
 <%= @error %>
@@ -9,40 +9,82 @@
 <% if !logged_in? %>
 <h2 class='loggedout'>Please log in to vote!</h2>
 <% end %>
+<div id='edit_survey'>
+<% if logged_in? &&  current_user.id == @survey.creator_id %>
+<a class="surveyedit" href='/surveys/<%=@survey.id%>/questions/new'><span>add questions</span></a>
+<br>
+<a class="surveyedit" href='/surveys/<%=@survey.id %>/edit'><span>edit survey</span></a>
+
+    <div>
+      <form action='/surveys/<%= @survey.id %>' method='post'>
+        <input type='hidden' name='_method' value='delete' />
+        <input type='submit' class="styled-button-7" value='delete survey' />
+      </form>
+    </div>
+    <% if @survey.is_active == false %>
+    <div>
+      <form action='/surveys/<%= @survey.id %>/active' method='post'>
+        <input type='hidden' name='_method' value='put' />
+    <input type='hidden' name='survey[is_active]' value='<%=true%>' />
+        <input type='submit' class="styled-button-7" value='activate survey' />
+      </form>
+    </div>
+    <%= @survey.is_active %>
+    <% end %>
+
+
+<% end %>
+</div>
+
+
+  <div id='choice'>
 <% @survey.questions.each do |question|%>
-  <h3><%= question.content %></h3>
+  <h4><%= question.content %></h4>
   <% if logged_in? && current_user.id == @survey.creator_id %>
-  <a href='/questions/<%=question.id %>/edit'>edit question</a>
-  <a href='/questions/<%=question.id%>/choices/new'>add choices</a>
+  <a class="editing" href='/questions/<%=question.id %>/edit'><span>edit question</span></a>
+  <a class="editing" href='/questions/<%=question.id%>/choices/new'><span>add choices</span></a>
   <div>
     <form action='/questions/<%= question.id %>' method='post'>
       <input type='hidden' name='_method' value='delete' />
-      <input type='submit' value='delete' />
+      <input type='submit' class="styled-button-7" value='delete question' />
     </form>
   </div>
   <%end%>
 
+
   <% question.choices.each do |choice|%>
-   <%= choice.content %>
-     <%= choice.answers.count %>
-     <% if logged_in? %>
+   <h6><%= choice.content %></h6>
+   <% if votedchoice(current_user, choice) %>
+   <p>your current choice</p>
+
+     <div>
+        <form action='/choices/<%=choice.id%>/delete' method='post'>
+           <input type='hidden' name='user[taker_id]' value="<%=current_user.id%>" />
+          <input type='hidden' name='_method' value='delete' />
+          <input type='submit'class="styled-button-7" value='delete vote' />
+        </form>
+      </div>
+
+      <% else %>
+     <% if logged_in? && current_user.id != @survey.creator_id %>
     <div id='answer-form'>
     <form action='/answers' method='post'>
       <input type='hidden' name='answer[taker_id]' value="<%=current_user.id%>"/>
     <input type='hidden' name='answer[choice_id]' value="<%=choice.id%>" />
     <input type='hidden' name='answer[question_id]' value="<%=choice.question_id%>" />
    <input type='hidden' name='answer[survey_id]' value="<%=@survey.id%>" />
-      <input type='submit' value='vote' />
+      <input type='submit' class="styled-button-7" value='vote' />
     </form>
-    <% end%>
   </div>
+    <% end%>
+    <%end %>
 
    <% if logged_in? && current_user.id == @survey.creator_id %>
-    <a href='/choices/<%=choice.id %>/edit'>edit choice</a>
+    <a class="editing" href='/choices/<%=choice.id %>/edit'><span>edit choice</span></a>
         <div>
       <form action='/choices/<%= choice.id %>' method='post'>
         <input type='hidden' name='_method' value='delete' />
-        <input type='submit' value='delete' />
+        <input type='submit' class="styled-button-7" value='delete choice' />
       </form>
     </div>
     <% end %>
@@ -51,16 +93,11 @@
   <hr>
 <% end %>
 
-<% if logged_in? &&  current_user.id == @survey.creator_id %>
-<a href='/surveys/<%=@survey.id%>/questions/new'>add questions</a>
-    <div>
-      <form action='/surveys/<%= @survey.id %>' method='post'>
-        <input type='hidden' name='_method' value='delete' />
-        <input type='submit' value='delete' />
-      </form>
-    </div>
 
-<a href='/surveys/<%=@survey.id %>/edit'>edit survey</a>
-<% end %>
+   </div>
 
-<a href="/">Back </a>
+<% if answered_all?(current_user, @survey) %>
+<a href="/">Submit</a>
+<%end %>
+
+

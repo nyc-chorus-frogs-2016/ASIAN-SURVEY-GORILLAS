@@ -1,0 +1,131 @@
+body {
+    background-image: url("http://hdwallpapersfit.com/wp-content/uploads/2015/04/gorilla-animal-monkey-wallpaper.jpg");
+    background-color: #cccccc;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+/*-webkit-transform: scaleX(-1);*/
+
+
+h1 {
+  font-size: 40px;
+  font-family: fantasy;
+  font-weight: bolder;
+    color: darkblue;
+  margin: 20px;
+}
+
+h3 {
+  font-size: 30px;
+  font-family: -webkit-pictograph;
+}
+
+h4{
+  font-size: 28px;
+  font-family: -webkit-pictograph;
+  color: purple;
+  margin-top: 0;
+  padding: 0;
+
+}
+
+h5{
+  font-size: 22px;
+font-family: -webkit-pictograph;
+  color: rgba(230, 16, 161, 0.89);
+}
+
+h6{
+  font-size: 15px;
+}
+
+#navbar {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+#navbar a{
+  font-size: 28px;
+  font-weight: bolder;
+  color: #883ACA;
+}
+
+a{
+  text-decoration: none;
+  font-size: 20px;
+  font-family: -webkit-pictograph;
+
+}
+
+.errormsg{
+  color: red;
+  font-weight: bolder;
+  font-size: 20px;
+}
+a:hover{
+  color: black;
+}
+
+a:visited{
+  color: #AF009F;
+  font-weight: bold;
+}
+
+#surveylist{
+  background-color: white;
+  opacity: 0.5;
+  margin-right: 70%;
+    z-index: -4;
+}
+
+#choice{
+  font-size: 19px;
+  background-color: rgba(249, 69, 125, 0.75);
+  margin-right: 70%;
+
+}
+
+ a.editing span{
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  color:blue;
+}
+
+.styled-button-7 {
+  background: #FF5DB1;
+  background: -moz-linear-gradient(top,#FF5DB1 0%,#E94A86 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#FF5DB1),color-stop(100%,#E94A86));
+  background: -webkit-linear-gradient(top,#FF5DB1 0%,#E94A86 100%);
+  background: -o-linear-gradient(top,#FF5DB1 0%,#E94A86 100%);
+  background: -ms-linear-gradient(top,#FF5DB1 0%,#E94A86 100%);
+  background: linear-gradient(top,#FF5DB1 0%,#E94A86 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#FF5DB1', endColorstr='#E94A86',GradientType=0);
+  padding:5px 7px;
+  color:#fff;
+  font-family:'Helvetica Neue',sans-serif;
+  font-size:12px;
+  border-radius:4px;
+  -moz-border-radius:4px;
+  -webkit-border-radius:4px;
+  border:1px solid #E8124F
+}
+
+.loggedout {
+  font-size: 20px;
+  color: red;
+}
+
+#edit_survey{
+  background-color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 20px;
+}
+
+ a.surveyedit span{
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  color:rgba(29, 133, 212, 0.95);
+}
